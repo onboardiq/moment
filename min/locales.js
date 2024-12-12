@@ -5697,6 +5697,102 @@
 
     //! moment.js locale configuration
 
+    var monthsStrictRegex$2 =
+            /^(janvye|fevriye|mas|avril|me|jen|jiyè|out|septanm|oktòb|novanm|desanm)/i,
+        monthsShortStrictRegex$2 =
+            /(janv\.?|fevr\.?|mas|avr\.?|me|jen|jiyè\.?|out|sept\.?|okt\.?|nov\.?|des\.?)/i,
+        monthsRegex$7 =
+            /(janv\.?|fevr\.?|mas|avr\.?|me|jen|jiyè\.?|out|sept\.?|okt\.?|nov\.?|des\.?|janvye|fevriye|mas|avril|me|jen|jiyè|out|septanm|oktòb|novanm|desanm)/i,
+        monthsParse$8 = [
+            /^janv/i,
+            /^fevr/i,
+            /^mas/i,
+            /^avr/i,
+            /^me/i,
+            /^jen/i,
+            /^jiyè/i,
+            /^out/i,
+            /^sept/i,
+            /^okt/i,
+            /^nov/i,
+            /^des/i,
+        ];
+
+    moment.defineLocale('ht', {
+        months: 'janvye_fevriye_mas_avril_me_jen_jiyè_out_septanm_oktòb_novanm_desanm'.split(
+            '_'
+        ),
+        monthsShort:
+            'janv._fevr._mas_avr._me_jen_jiyè._out_sept._okt._nov._des.'.split('_'),
+        monthsRegex: monthsRegex$7,
+        monthsShortRegex: monthsRegex$7,
+        monthsStrictRegex: monthsStrictRegex$2,
+        monthsShortStrictRegex: monthsShortStrictRegex$2,
+        monthsParse: monthsParse$8,
+        longMonthsParse: monthsParse$8,
+        shortMonthsParse: monthsParse$8,
+        weekdays: 'dimanch_lendi_madi_mèkredi_jedi_vandredi_samdi'.split('_'),
+        weekdaysShort: 'dim._len._mad._mèk._jed._ven._sam.'.split('_'),
+        weekdaysMin: 'di_le_ma_me_je_ve_sa'.split('_'),
+        weekdaysParseExact: true,
+        longDateFormat: {
+            LT: 'HH:mm',
+            LTS: 'HH:mm:ss',
+            L: 'DD/MM/YYYY',
+            LL: 'D MMMM YYYY',
+            LLL: 'D MMMM YYYY HH:mm',
+            LLLL: 'dddd D MMMM YYYY HH:mm',
+        },
+        calendar: {
+            sameDay: '[Jodi a nan] LT',
+            nextDay: '[Demain nan] LT',
+            nextWeek: 'dddd [nan] LT',
+            lastDay: '[Ye nan] LT',
+            lastWeek: 'dddd [dènye nan] LT',
+            sameElse: 'L',
+        },
+        relativeTime: {
+            future: 'nan %s',
+            past: 'sa gen %s',
+            s: 'kèk segonn',
+            ss: '%d segonn',
+            m: 'yon minit',
+            mm: '%d minit',
+            h: 'yon èdtan',
+            hh: '%d èdtan',
+            d: 'yon jou',
+            dd: '%d jou',
+            w: 'yon semèn',
+            ww: '%d semèn',
+            M: 'yon mwa',
+            MM: '%d mwa',
+            y: 'yon ane',
+            yy: '%d ane',
+        },
+        dayOfMonthOrdinalParse: /\d{1,2}(ye|)/,
+        ordinal: function (number, period) {
+            switch (period) {
+                case 'D':
+                    return number + (number === 1 ? 'ye' : '');
+                default:
+                case 'M':
+                case 'Q':
+                case 'DDD':
+                case 'd':
+                    return number + (number === 1 ? 'ye' : 'e');
+                case 'w':
+                case 'W':
+                    return number + (number === 1 ? 'ye' : 'e');
+            }
+        },
+        week: {
+            dow: 1,
+            doy: 4,
+        },
+    });
+
+    //! moment.js locale configuration
+
     var weekEndings =
         'vasárnap hétfőn kedden szerdán csütörtökön pénteken szombaton'.split(' ');
     function translate$4(number, withoutSuffix, key, isFuture) {
@@ -8753,7 +8849,7 @@
             'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_'),
         monthsShortWithoutDots$1 =
             'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_'),
-        monthsParse$8 = [
+        monthsParse$9 = [
             /^jan/i,
             /^feb/i,
             /^(maart|mrt\.?)$/i,
@@ -8767,7 +8863,7 @@
             /^nov/i,
             /^dec/i,
         ],
-        monthsRegex$7 =
+        monthsRegex$8 =
             /^(januari|februari|maart|april|mei|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
 
     moment.defineLocale('nl-be', {
@@ -8784,16 +8880,16 @@
             }
         },
 
-        monthsRegex: monthsRegex$7,
-        monthsShortRegex: monthsRegex$7,
+        monthsRegex: monthsRegex$8,
+        monthsShortRegex: monthsRegex$8,
         monthsStrictRegex:
             /^(januari|februari|maart|april|mei|ju[nl]i|augustus|september|oktober|november|december)/i,
         monthsShortStrictRegex:
             /^(jan\.?|feb\.?|mrt\.?|apr\.?|mei|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i,
 
-        monthsParse: monthsParse$8,
-        longMonthsParse: monthsParse$8,
-        shortMonthsParse: monthsParse$8,
+        monthsParse: monthsParse$9,
+        longMonthsParse: monthsParse$9,
+        shortMonthsParse: monthsParse$9,
 
         weekdays:
             'zondag_maandag_dinsdag_woensdag_donderdag_vrijdag_zaterdag'.split('_'),
@@ -8851,7 +8947,7 @@
             'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_'),
         monthsShortWithoutDots$2 =
             'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_'),
-        monthsParse$9 = [
+        monthsParse$a = [
             /^jan/i,
             /^feb/i,
             /^(maart|mrt\.?)$/i,
@@ -8865,7 +8961,7 @@
             /^nov/i,
             /^dec/i,
         ],
-        monthsRegex$8 =
+        monthsRegex$9 =
             /^(januari|februari|maart|april|mei|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
 
     moment.defineLocale('nl', {
@@ -8882,16 +8978,16 @@
             }
         },
 
-        monthsRegex: monthsRegex$8,
-        monthsShortRegex: monthsRegex$8,
+        monthsRegex: monthsRegex$9,
+        monthsShortRegex: monthsRegex$9,
         monthsStrictRegex:
             /^(januari|februari|maart|april|mei|ju[nl]i|augustus|september|oktober|november|december)/i,
         monthsShortStrictRegex:
             /^(jan\.?|feb\.?|mrt\.?|apr\.?|mei|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i,
 
-        monthsParse: monthsParse$9,
-        longMonthsParse: monthsParse$9,
-        shortMonthsParse: monthsParse$9,
+        monthsParse: monthsParse$a,
+        longMonthsParse: monthsParse$a,
+        shortMonthsParse: monthsParse$a,
 
         weekdays:
             'zondag_maandag_dinsdag_woensdag_donderdag_vrijdag_zaterdag'.split('_'),
@@ -9211,7 +9307,7 @@
             'stycznia_lutego_marca_kwietnia_maja_czerwca_lipca_sierpnia_września_października_listopada_grudnia'.split(
                 '_'
             ),
-        monthsParse$a = [
+        monthsParse$b = [
             /^sty/i,
             /^lut/i,
             /^mar/i,
@@ -9261,9 +9357,9 @@
             }
         },
         monthsShort: 'sty_lut_mar_kwi_maj_cze_lip_sie_wrz_paź_lis_gru'.split('_'),
-        monthsParse: monthsParse$a,
-        longMonthsParse: monthsParse$a,
-        shortMonthsParse: monthsParse$a,
+        monthsParse: monthsParse$b,
+        longMonthsParse: monthsParse$b,
+        shortMonthsParse: monthsParse$b,
         weekdays:
             'niedziela_poniedziałek_wtorek_środa_czwartek_piątek_sobota'.split('_'),
         weekdaysShort: 'ndz_pon_wt_śr_czw_pt_sob'.split('_'),
@@ -9550,7 +9646,7 @@
             return number + ' ' + plural$4(format[key], +number);
         }
     }
-    var monthsParse$b = [
+    var monthsParse$c = [
         /^янв/i,
         /^фев/i,
         /^мар/i,
@@ -9600,9 +9696,9 @@
         },
         weekdaysShort: 'вс_пн_вт_ср_чт_пт_сб'.split('_'),
         weekdaysMin: 'вс_пн_вт_ср_чт_пт_сб'.split('_'),
-        monthsParse: monthsParse$b,
-        longMonthsParse: monthsParse$b,
-        shortMonthsParse: monthsParse$b,
+        monthsParse: monthsParse$c,
+        longMonthsParse: monthsParse$c,
+        shortMonthsParse: monthsParse$c,
 
         // полные названия с падежами, по три буквы, для некоторых, по 4 буквы, сокращения с точкой и без точки
         monthsRegex:
